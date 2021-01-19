@@ -30,7 +30,6 @@ tree.forEach(p => {
   })
 })
 
-
 console.log('words=', Object.keys(words).length)
 // processs words sorting top 52 most occurrences
 let newWords = {}
@@ -49,8 +48,8 @@ Object.keys(words).sort((a, b) => {
   newWords[String.fromCharCode(i < 26 ? 65 + i : 97 + i - 26)] = word
 })
 
-//console.log('most freq word=', Object.keys(newWords).map(idx => [newWords[idx], words[newWords[idx]]]))
-fs.writeFileSync('./database/migrate/words.txt', 
+// console.log('most freq word=', Object.keys(newWords).map(idx => [newWords[idx], words[newWords[idx]]]))
+fs.writeFileSync('./database/migrate/words.txt',
   '|คำ|จำนวนครั้ง|\n' +
   '|---|---:|\n' +
   Object.keys(newWords).map(idx => '|' + newWords[idx] + '|' + words[newWords[idx]] + '|').join('\n')
@@ -65,23 +64,22 @@ Object.keys(dict).filter(key => dict[key] > 1).forEach(key => {
   lookup.push(key)
 })
 
-
 // pass 2: rebuild tree
 let newTree = tree.map(p =>
-  [findIndex(p[0]), p[1].map(a => 
+  [findIndex(p[0]), p[1].map(a =>
     [findIndex(a[0]), a[1].map(d =>
       [findIndex(d[0]), d[1].length === 1 ? d[1][0] : d[1]]
     )]
   )]
 )
 
-fs.writeFileSync('./database/db.json', JSON.stringify({
+fs.writeFileSync(`./database/${process.argv.slice(2)[0] || 'db'}.json`, JSON.stringify({
   data: newTree,
   lookup: lookup.join('|'),
-  words: Object.keys(newWords).map((ch) => newWords[ch]).join('|'),
+  words: Object.keys(newWords).map((ch) => newWords[ch]).join('|')
 }))
 
-function addToDict(key) {
+function addToDict (key) {
   if (typeof dict[key] === 'undefined') {
     dict[key] = 1
   } else {
@@ -97,12 +95,12 @@ function addToDict(key) {
   })
 }
 
-function findIndex(key) {
+function findIndex (key) {
   key = changeWord(key)
   return typeof newDict[key] === 'number' ? newDict[key] : key
 }
 
-function changeWord(text) {
+function changeWord (text) {
   Object.keys(newWords).forEach(ch => {
     text = text.replace(newWords[ch], ch)
   })
