@@ -143,4 +143,5 @@
       })
     })
   }
+// eslint-disable-next-line no-undef
 })(typeof angular !== 'undefined' ? angular : false)
