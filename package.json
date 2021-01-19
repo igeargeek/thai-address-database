@@ -1,6 +1,6 @@
 {
   "name": "igg-thai-address-database",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "",
   "main": "lib/index.js",
   "engines": {
@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sellsuki/thai-address-database.git"
+    "url": "git+https://github.com/igeargeek/thai-address-database.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sellsuki/thai-address-database/issues"
+    "url": "https://github.com/igeargeek/thai-address-database/issues"
   },
-  "homepage": "https://github.com/Sellsuki/thai-address-database#readme",
+  "homepage": "https://github.com/igeargeek/thai-address-database#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",

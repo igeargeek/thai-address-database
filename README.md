@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     result () {
-      return searchAddressByDistrict(this.q)
+      return searchAddressByDistrict(this.q, 'db') // pass keys db file default 'db'
     }
   }
 }
@@ -59,7 +59,7 @@ export default {
 ใน /database/raw_database มีไฟล์ฐานข้อมูลที่เป็น excel ชื่อว่า database.xlxs สามารถอัปเดทฐานข้อมูลได้ในนี้โดยเมื่ออัปเดตเรียบร้อยก็รันคำสั่ง
 
 ```bash
-npm run migrate
+npm run migrate {:file name} // default \"db\"
 ```
 
 ตัว script จะแปลงไฟล์ database.xlsx ไปเป็น /database/db.json ให้ (ยังไม่ support geodb)
